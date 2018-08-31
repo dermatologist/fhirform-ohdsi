@@ -129,3 +129,6 @@ local.properties
 /src/main/resources/js/bundle.js
 /src/main/resources/js/main.js
 /src/main/resources/FHIRForms/
+
+# CDM DDL
+/data/cdm.sql

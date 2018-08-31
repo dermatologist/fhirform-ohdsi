@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  pgsql-docker-container:
+    image: postgres:alpine
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=root123
+      - POSTGRES_USER=fhirform # DB name defaults to POSTGRES_USER
+    networks:
+      - overlay
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d # import cdm.sql file (You can put in *.sh, *.sql, or *.sql.gz files and it will take care of executing those on start-up.)
+#    volumes_from:
+#      - /data/pgsql
+  ff-ohdsi:
+    image: ff-ohdsi:2.0
+    build: .
+    networks:
+      - overlay
+    depends_on:
+      - pgsql-docker-container
+    ports:
+      - 8080:8080
+#    volumes:
+#      - /data/ff-ohdsi
+networks:
+  overlay:
