@@ -15,9 +15,13 @@ spring:
     demap: http://hl7.org/fhir/StructureDefinition/questionnaire-deMap
   thymeleaf:
     prefix: classpath:/WEB-INF/templates/
+  datasource:
+    url: jdbc:postgresql://pgsql-docker-container:5432/fhirform
+    username: fhirform
+    password: root123
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate.jdbc.batch_size: 20
       hibernate.cache.use_query_cache: false
@@ -28,10 +32,10 @@ spring:
       hibernate.search.default.indexBase: target/lucenefiles
       hibernate.search.lucene_version: LUCENE_CURRENT
       hibernate.search.model_mapping: ca.uhn.fhir.jpa.search.LuceneSearchMappingFactory
-
-  h2:
-    console:
-      enabled: true
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+#  h2:
+#    console:
+#      enabled: true
 hapi:
   fhir:
     version: dstu3
