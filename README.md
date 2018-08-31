@@ -1,9 +1,15 @@
-# fhirform-server | *A FHIR has been lit on this server*!
+# fhirform-ohdsi | *A FHIR has been lit on this server*!
 
 
 ## About
 
-This is a spring boot HAPI FHIR server for managing healthcare forms as FHIR Questionnaire resources with individual DataElements. This is a part of the FHIRForm framework with an [editor](https://github.com/E-Health/fred) and a [viewer](https://github.com/dermatologist/fhir-questionnaire-render-react). You may spin up a FHIR server using [this repo](https://github.com/dermatologist/fhirql). The meta-repository of FHIRForm framework and resources is [here](https://github.com/E-Health/fhirform).
+This is an experimental extension of the [FHIRForm](https://github.com/E-Health/fhirform) framework.
+The aim is to provide the fhirform server (A HAPI FHIR server for handling FHIR questionnaires with special extensions)
+the functionality to convert QuestionnaireResponses to [OHDSI OMOP CDM](https://www.ohdsi.org/).
+
+### Work in progress...  [Contact](https://nuchange.ca/contact)
+
+If successful, this will be merged with [fhirform-server](https://github.com/dermatologist/fhirform-server).
 
 ## Requirements
 
