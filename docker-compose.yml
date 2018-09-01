@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   pgsql-docker-container:
@@ -29,17 +29,21 @@ services:
     ports:
       - 8787:8787
       - 6311:6311
+    depends_on:
+      - pgsql-docker-container
     networks:
       - overlay
   broadsea-webtools:
     image: ohdsi/broadsea-webtools
     ports:
       - 8077:8080
-#    volumes:
+    depends_on:
+       - pgsql-docker-container
+    volumes:
 #      - .:/tmp/drivers/:ro
-#      - ./config-local.js:/usr/local/tomcat/webapps/atlas/js/config-local.js:ro
+      - ./data/config-local.js:/usr/local/tomcat/webapps/atlas/js/config-local.js
     environment:
-      - WEBAPI_URL=http://summary.nuchange.ca  # Change this
+      - WEBAPI_URL=http://summary.nuchange.ca  # TODO: Change this
       - env=webapi-postgresql
       - datasource_driverClassName=org.postgresql.Driver
       - datasource_url=jdbc:postgresql://pgsql-docker-container:5432/fhirform
