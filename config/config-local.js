@@ -7,7 +7,7 @@ define([], function () {
     // WebAPI (TODO: Change This)
     configLocal.api = {
         name: 'OHDSI',
-        url: 'http://summary.nuchange.ca/WebAPI/'
+        url: '/WebAPI/'
     };
 
     configLocal.cohortComparisonResultsEnabled = false;
