@@ -1,6 +1,17 @@
 version: '2'
 
 services:
+  haproxy:
+    build: ./haproxy/.
+    image: beapen/ffohdsi-haproxy:latest
+    ports:
+      - "8080:8080"
+      - "8090:5001"
+    networks:
+      - overlay
+    depends_on:
+      - ff-ohdsi
+
   pgsql-docker-container:
     image: postgres:alpine
     restart: always
@@ -20,15 +31,15 @@ services:
       - overlay
     depends_on:
       - pgsql-docker-container
-    ports:
-      - 8080:8080
+#    ports:
+#      - 8080:8080
 #    volumes:
 #      - /data/ff-ohdsi
   broadsea-methods-library:
     image: ohdsi/broadsea-methodslibrary
-    ports:
-      - 8787:8787
-      - 6311:6311
+#    ports:
+#      - 8787:8787
+#      - 6311:6311
     depends_on:
       - pgsql-docker-container
     networks:
@@ -38,8 +49,8 @@ services:
     build:
         context: .
         dockerfile: Dockerfile-webtools
-    ports:
-      - 8077:8080
+#    ports:
+#      - 8077:8080
     depends_on:
        - pgsql-docker-container
 #    volumes:

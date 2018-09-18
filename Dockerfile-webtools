@@ -1,6 +1,6 @@
 FROM ohdsi/broadsea-webtools:latest
 
-ENV WEBAPI_URL="http://summary.nuchange.ca"
+ENV WEBAPI_URL="http://tomcat.nuchange.ca"
 ENV env="webapi-postgresql"
 ENV datasource_driverClassName="org.postgresql.Driver"
 ENV datasource_url="jdbc:postgresql://pgsql-docker-container:5432/fhirform"
