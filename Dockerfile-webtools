@@ -1,0 +1,25 @@
+FROM ohdsi/broadsea-webtools:latest
+
+ENV WEBAPI_URL="http://summary.nuchange.ca"
+ENV env="webapi-postgresql"
+ENV datasource_driverClassName="org.postgresql.Driver"
+ENV datasource_url="jdbc:postgresql://pgsql-docker-container:5432/fhirform"
+ENV datasource.cdm.schema="cdm"
+ENV datasource.ohdsi.schema="ohdsi"
+ENV datasource_username="fhirform"
+ENV datasource_password="root123"
+ENV spring.jpa.properties.hibernate.default_schema="ohdsi"
+ENV spring.jpa.properties.hibernate.dialect="org.hibernate.dialect.PostgreSQLDialect"
+ENV spring.batch.repository.tableprefix="ohdsi.BATCH_"
+ENV flyway_datasource_driverClassName="org.postgresql.Driver"
+ENV flyway_datasource_url="jdbc:postgresql://pgsql-docker-container:5432/fhirform"
+ENV flyway_schemas="ohdsi"
+ENV flyway.placeholders.ohdsiSchema="ohdsi"
+ENV flyway_datasource_username="fhirform"
+ENV flyway_datasource_password="root123"
+ENV flyway.locations="classpath:db/migration/postgresql"
+
+COPY config/config-local.js /usr/local/tomcat/webapps/atlas/js
+
+# Expose the port
+EXPOSE 8080

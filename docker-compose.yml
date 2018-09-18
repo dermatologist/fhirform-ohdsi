@@ -14,7 +14,7 @@ services:
 #    volumes_from:
 #      - /data/pgsql
   ff-ohdsi:
-    image: ff-ohdsi:2.0
+    image: beapen/ff-ohdsi:2.0
     build: .
     networks:
       - overlay
@@ -34,33 +34,17 @@ services:
     networks:
       - overlay
   broadsea-webtools:
-    image: ohdsi/broadsea-webtools
+    image: beapen/broadsea-webtools
+    build:
+        context: .
+        dockerfile: Dockerfile-webtools
     ports:
       - 8077:8080
     depends_on:
        - pgsql-docker-container
-    volumes:
+#    volumes:
 #      - .:/tmp/drivers/:ro
-      - ./data/config-local.js:/usr/local/tomcat/webapps/atlas/js/config-local.js
-    environment:
-      - WEBAPI_URL=http://summary.nuchange.ca  # TODO: Change this
-      - env=webapi-postgresql
-      - datasource_driverClassName=org.postgresql.Driver
-      - datasource_url=jdbc:postgresql://pgsql-docker-container:5432/fhirform
-      - datasource.cdm.schema=cdm
-      - datasource.ohdsi.schema=ohdsi
-      - datasource_username=fhirform
-      - datasource_password=root123
-      - spring.jpa.properties.hibernate.default_schema=ohdsi
-      - spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-      - spring.batch.repository.tableprefix=ohdsi.BATCH_
-      - flyway_datasource_driverClassName=org.postgresql.Driver
-      - flyway_datasource_url=jdbc:postgresql://pgsql-docker-container:5432/fhirform
-      - flyway_schemas=ohdsi
-      - flyway.placeholders.ohdsiSchema=ohdsi
-      - flyway_datasource_username=fhirform
-      - flyway_datasource_password=root123
-      - flyway.locations=classpath:db/migration/postgresql
+#      - ./config:/usr/local/tomcat/webapps/atlas/js
     networks:
       - overlay
 networks:
