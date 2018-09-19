@@ -15,17 +15,21 @@ If successful, this will be merged with [fhirform-server](https://github.com/der
 
 * java 8
 * maven 3
+* docker
+* docker-compose
 
 ## How to Use:
 
-
 ```
-mvn spring-boot:run
+mvn spring-boot:repackage
+docker-compose up
 ```
 
-*How to manage the whole FHIRForm framework is described elsewhere.*
+*How to manage the whole [FHIRForm](https://github.com/E-Health/fhirform) framework is described elsewhere.*
 
-* Access at http://localhost:8080/fhir
+* Access FHIR server at http://localhost:8080/fhir
+* OHDSI [Atlas](http://www.ohdsi.org/web/atlas/#/home) at http://localhost:8080/atlas
+* Rstudio at http://localhost:8080/rstudio
 
 ## Contributors
 
